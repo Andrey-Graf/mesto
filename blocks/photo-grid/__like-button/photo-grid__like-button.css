@@ -1,19 +1,20 @@
 .photo-grid__like-button {
-    position: absolute;
+    position: relative;
     padding: 0;
-    width: 22px;
-    height: 19px;
+    max-width: 22px;
+    max-height: 19px;
+    width: 100vw;
+    height: 100vh;
     background: none;
     border: none;
     box-sizing: border-box;
-    right: 20px;
-    bottom: 29px;
     background-image: url(../../../images/like-image.svg);
     background-color: #fff;
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
     cursor: pointer;
+    align-self: center;
 }
 
 .photo-grid__like-button:hover {
