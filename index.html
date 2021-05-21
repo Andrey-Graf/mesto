@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Место</title>
+</head>
+<body>
+    <div class="root">
+        <header class="header">
+            <img src="./images/header-logo.svg" alt="Место" class="header__logo">
+        </header>
+        <main class="content">
+            <section class="profile">
+                <div class="profile__container-info">
+                    <img src="./images/profile-image.svg" alt="Жак-Ив Кусто" class="profile__avatar">
+                    <div class="profile__edit">
+                        <div class="profile__info">
+                            <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+                            <p class="profile__info-subtitle">Иследователь океана</p>
+                        </div>
+                        <button class="profile__edit-button button-open-form" aria-label="Редактировать"></button>
+                    </div>
+                </div>
+                <button class="profile__add-button button-open-form" aria-label="Добавить"></button>
+            </section>
+
+            <section class="photo-grid">
+                <ul class="photo-grid__elements">
+                    <li class="photo-grid__element">
+                        <figure class="photo-grid__figure">
+                            <img src="./images/kaliningrad.svg" alt="Калининград" class="photo-grid__image">
+                            <figcaption class="photo-grid__caption">Калининград</figcaption>
+                        </figure>
+                        <button class="photo-grid__like-button"></button>
+                    </li>
+                    <li class="photo-grid__element">
+                        <figure class="photo-grid__figure">
+                            <img src="./images/domsovetov.svg" alt="Дом советов" class="photo-grid__image">
+                            <figcaption class="photo-grid__caption">Дом советов</figcaption>
+                        </figure>
+                        <button class="photo-grid__like-button"></button>
+                    </li>
+                    <li class="photo-grid__element">
+                        <figure class="photo-grid__figure">
+                            <img src="./images/sovetsk.svg" alt="Советск" class="photo-grid__image">
+                            <figcaption class="photo-grid__caption">Советск</figcaption>
+                        </figure>
+                        <button class="photo-grid__like-button"></button>
+                    </li>
+                    <li class="photo-grid__element">
+                        <figure class="photo-grid__figure">
+                            <img src="./images/most-queen-Louise.svg" alt="Мост Королевы Луизы" class="photo-grid__image">
+                            <figcaption class="photo-grid__caption">Мост Королевы Луизы</figcaption>
+                        </figure>
+                        <button class="photo-grid__like-button"></button>
+                    </li>
+                    <li class="photo-grid__element">
+                        <figure class="photo-grid__figure">
+                            <img src="./images/fort-11.svg" alt="Форт№11 Дёнхофф" class="photo-grid__image">
+                            <figcaption class="photo-grid__caption">Форт№11 Дёнхофф</figcaption>
+                        </figure>
+                        <button class="photo-grid__like-button"></button>
+                    </li>
+                    <li class="photo-grid__element">
+                        <figure class="photo-grid__figure">
+                            <img src="./images/svetlogorsk.svg" alt="Светлогорск" class="photo-grid__image">
+                            <figcaption class="photo-grid__caption">Светлогорск</figcaption>
+                        </figure>
+                        <button class="photo-grid__like-button"></button>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">&copy;2021. Андрей Лебедев</p>
+        </footer>
+        <section class="popup"> 
+            <div class="popup__container">
+                <div class="popup__edit-form">
+                    <h2 class="popup__title">Редактировать профиль</h2>
+                    <div class="input">
+                        <input type="text" id="name" class="input__text popup__input-name" value="Жак-Ив Кусто">
+                        <input type="text" id="job" class="input__text popup__input-job" value="Иследователь океана">
+                        <button type="submit" class="popup__button-save button-save" aria-label="Сохранить">Сохранить</button>
+                    </div>
+                </div>
+                <button type="reset" class="popup__button-close" aria-label="Закрыть попап"></button>
+            </div>
+        </section>
+        <script src="./scripts/main.js"></script>
+    </div>
+</body>
+</html>

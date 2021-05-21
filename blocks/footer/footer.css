@@ -1,0 +1,20 @@
+.footer {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 66px 0 60px 0;
+    display: flex;
+    justify-content: end;
+    font-family: 'inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media screen and (max-width: 950px) {
+    .footer {
+        padding-left: 19px;
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .footer {
+        padding: 48px 19px 36px 19px;
+    }
+}
