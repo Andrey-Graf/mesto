@@ -1,16 +1,18 @@
 .header {
     position: relative;
     max-width: 880px;
-    margin: 0 auto;
+    min-width: 320px;
+    width: 68%;
+    margin: 0; 
     padding: 45px 0 41px;
     display: flex;
-    align-items: flex-start;
-    opacity: .7;
-    border-bottom: 1px solid #545454;
+    align-self: center;
+    background-color: #000000;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
 @media screen and (max-width: 880px) {
     .header{
-        padding: 28px 0 31.6px 27px;
+        padding: 28px 0 31.6px 0;
     }
 }

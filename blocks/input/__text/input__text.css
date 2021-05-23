@@ -1,9 +1,17 @@
 .input__text {
     padding: 0 0 13px 0;
+    margin-top: 30px;
     min-width: 358px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     box-sizing: border-box;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000;
+}
+
+.input__text:first-child {
+    margin-top: 0;
 }
 
 @media screen and (max-width: 767px) {

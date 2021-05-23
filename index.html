@@ -20,10 +20,10 @@
                             <h1 class="profile__info-title">Жак-Ив Кусто</h1>
                             <p class="profile__info-subtitle">Иследователь океана</p>
                         </div>
-                        <button type="submit" class="profile__edit-button button-open-form" aria-label="Редактировать"></button>
+                        <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
                     </div>
                 </div>
-                <button type="submit" class="profile__add-button button-open-form" aria-label="Добавить"></button>
+                <button type="button" class="profile__add-button" aria-label="Добавить"></button>
             </section>
 
             <section class="photo-grid">
@@ -88,19 +88,19 @@
         <footer class="footer">
             <p class="footer__copyright">&copy;2021. Андрей Лебедев</p>
         </footer>
-        <section class="popup"> 
+        <div class="popup"> 
             <div class="popup__container">
                 <div class="popup__edit-form">
                     <h3 class="popup__title">Редактировать профиль</h3>
-                    <form class="input">
-                        <input type="text" class="input__text popup__input-name" value="Жак-Ив Кусто">
-                        <input type="text" class="input__text popup__input-job" value="Иследователь океана">
-                        <button type="submit" class="popup__button-save button-save" aria-label="Сохранить">Сохранить</button>
+                    <form class="input" name="edit">
+                        <input type="text" name="name" placeholder="Введите имя" class="input__text input__text-name" value="Жак-Ив Кусто" required>
+                        <input type="text" name="job" placeholder="Введите профессию" class="input__text input__text-job" value="Иследователь океана" required>
+                        <button type="submit" class="popup__button-save" aria-label="Сохранить">Сохранить</button>
                     </form>
                 </div>
-                <button type="reset" class="popup__button-close" aria-label="Закрыть попап"></button>
+                <button type="button" class="popup__button-close" aria-label="Закрыть попап"></button>
             </div>
-        </section>
+        </div>
         <script src="./scripts/main.js"></script>
     </div>
 </body>

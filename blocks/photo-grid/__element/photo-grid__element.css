@@ -1,9 +1,7 @@
 .photo-grid__element {
     position: relative;
     max-width: 282px;
-    max-height: 361px;
     width: 100vw;
-    height: 100vh;
     margin: 0;
     background: #fff;
     border-radius: 10px;
