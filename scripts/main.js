@@ -2,8 +2,8 @@
 let editButton = document.querySelector('.profile__edit-button');// Воспользуйтесь методом querySelector()
 let popup = document.querySelector('.popup');
 let closePopup = document.querySelector('.popup__button-close');
-let nameInput = document.querySelector('.input_text_name');// Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector('.input_text_job');// Воспользуйтесь инструментом .querySelector()
+let nameInput = document.querySelector('.input__text_name');// Воспользуйтесь инструментом .querySelector()
+let jobInput = document.querySelector('.input__text_job');// Воспользуйтесь инструментом .querySelector()
 let titleName = document.querySelector('.profile__info-title');
 let subtitleJob = document.querySelector('.profile__info-subtitle');
 let form = document.querySelector('.input');
