@@ -1,5 +1,6 @@
 .popup__button-close {
     position: absolute;
+    padding: 0;
     max-width: 40px;
     max-height: 40px;
     width: 100vw;

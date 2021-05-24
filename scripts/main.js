@@ -1,21 +1,21 @@
 // Находим форму в DOM
-let formElement = document.querySelector('.profile__edit-button');// Воспользуйтесь методом querySelector()
+let editButton = document.querySelector('.profile__edit-button');// Воспользуйтесь методом querySelector()
 let popup = document.querySelector('.popup');
 let closePopup = document.querySelector('.popup__button-close');
-let nameInput = document.querySelector('.input__text-name');// Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector('.input__text-job');// Воспользуйтесь инструментом .querySelector()
+let nameInput = document.querySelector('.input_text_name');// Воспользуйтесь инструментом .querySelector()
+let jobInput = document.querySelector('.input_text_job');// Воспользуйтесь инструментом .querySelector()
 let titleName = document.querySelector('.profile__info-title');
 let subtitleJob = document.querySelector('.profile__info-subtitle');
 let form = document.querySelector('.input');
 
 
 function formOpen(){
-    nameInput.value = titleName.innerText;
-    jobInput.value = subtitleJob.innerText;
+    nameInput.value = titleName.textContent;
+    jobInput.value = subtitleJob.textContent;
     popup.classList.add('popup_opened');
 }
 
-formElement.addEventListener('click', formOpen);
+editButton.addEventListener('click', formOpen);
 
 function formClose(){
     popup.classList.remove('popup_opened');
