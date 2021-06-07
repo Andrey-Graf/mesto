@@ -23,84 +23,64 @@
                         <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
                     </div>
                 </div>
-                <button type="button" class="profile__add-button" aria-label="Добавить"></button>
+                <button type="submit" class="profile__add-button" aria-label="Добавить"></button>
             </section>
 
             <section class="photo-grid">
                 <ul class="photo-grid__elements">
-                    <li class="photo-grid__element">
-                        <figure class="photo-grid__figure">
-                            <img src="./images/kaliningrad.svg" alt="Калининград" class="photo-grid__image">
-                            <figcaption class="photo-grid__group">
-                                <h2 class="photo-grid__caption">Калининград</h2>
-                                <button type="button" class="photo-grid__like-button"></button>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="photo-grid__element">
-                        <figure class="photo-grid__figure">
-                            <img src="./images/domsovetov.svg" alt="Дом советов" class="photo-grid__image">
-                            <figcaption class="photo-grid__group">
-                                <h2 class="photo-grid__caption">Дом советов</h2>
-                                <button type="button" class="photo-grid__like-button"></button>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="photo-grid__element">
-                        <figure class="photo-grid__figure">
-                            <img src="./images/sovetsk.svg" alt="Советск" class="photo-grid__image">
-                            <figcaption class="photo-grid__group">
-                                <h2 class="photo-grid__caption">Советск</h2>
-                                <button type="button" class="photo-grid__like-button"></button>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="photo-grid__element">
-                        <figure class="photo-grid__figure">
-                            <img src="./images/most-queen-Louise.svg" alt="Мост Королевы Луизы" class="photo-grid__image">
-                            <figcaption class="photo-grid__group">
-                                <h2 class="photo-grid__caption">Мост Королевы Луизы</h2>
-                                <button type="button" class="photo-grid__like-button"></button>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="photo-grid__element">
-                        <figure class="photo-grid__figure">
-                            <img src="./images/fort-11.svg" alt="Форт№11 Дёнхофф" class="photo-grid__image">
-                            <figcaption class="photo-grid__group">
-                                <h2 class="photo-grid__caption">Форт№11 Дёнхофф</h2>
-                                <button type="button" class="photo-grid__like-button"></button>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="photo-grid__element">
-                        <figure class="photo-grid__figure">
-                            <img src="./images/svetlogorsk.svg" alt="Светлогорск" class="photo-grid__image">
-                            <figcaption class="photo-grid__group">
-                                <h2 class="photo-grid__caption">Светлогорск</h2>
-                                <button type="button" class="photo-grid__like-button"></button>
-                            </figcaption>
-                        </figure>
-                    </li>
                 </ul>
             </section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">&copy;2021. Андрей Лебедев</p>
         </footer>
-        <div class="popup"> 
+        <div class="popup popup-edit"> 
             <div class="popup__container">
                 <div class="popup__edit-form">
                     <h3 class="popup__title">Редактировать профиль</h3>
-                    <form class="input" name="edit">
+                    <form class="input edit-input" name="edit">
                         <input type="text" name="name" placeholder="Введите имя" class="input__text input__text_type_name" value="Жак-Ив Кусто" required>
                         <input type="text" name="job" placeholder="Введите профессию" class="input__text input__text_type_job" value="Иследователь океана" required>
                         <button type="submit" class="popup__button-save" aria-label="Сохранить">Сохранить</button>
                     </form>
                 </div>
-                <button type="button" class="popup__button-close" aria-label="Закрыть попап"></button>
+                <button type="button" class="popup__button-close button__close_edit_form" aria-label="Закрыть попап"></button>
             </div>
         </div>
+        <div class="popup popup-add">
+            <div class="popup__container">
+                <div class="popup__add-form">
+                    <h3 class="popup__title">Новое место</h3>
+                    <form class="input add-input" name="add">
+                        <input type="text" name="name" placeholder="Название" class="input__text input__text_photo_name" required>
+                        <input type="text" name="link" placeholder="Ссылка на картинку" class="input__text input__text_photo_link" required>
+                        <button type="submit" class="popup__button-save" aria-label="Создать">Создать</button>
+                    </form>
+                </div>
+                <button type="button" class="popup__button-close button__close_add_form" aria-label="Закрыть попап"></button>
+            </div>
+        </div>
+        <div class="popup popup-photo">
+            <div class="popup-photo__container">
+                <figure class="popup-photo__figure">
+                    <img alt="" class="popup-photo__image photo-grid__image">
+                    <figcaption class="popup-photo__caption photo-grid__caption"></figcaption>
+                    <button type="button" class="popup__button-close button__close_photo_form" aria-label="Закрыть фотографию"></button>
+                </figure>
+            </div>
+        </div>
+        <template class="photo-template">
+            <li class="photo-grid__element">
+                <figure class="photo-grid__figure">
+                    <img src="#" alt="" class="photo-grid__image photo-grid__image_click_open">
+                    <button type="button" aria-label="Удалить" class="photo-grid__delete-button"></button>
+                    <figcaption class="photo-grid__group">
+                        <h2 class="photo-grid__caption"></h2>
+                        <button type="button" class="photo-grid__like-button"></button>
+                    </figcaption>
+                </figure>
+            </li>
+        </template>
         <script src="./scripts/main.js"></script>
     </div>
 </body>
