@@ -102,7 +102,7 @@ function formSubmitHandler(evt){
     titleName.textContent = nameInput.value;
     subtitleJob.textContent = jobInput.value;
     // Вставьте новые значения с помощью textContent
-    formCloseEdit();
+    closeFormEdit();
 }
 
 // Прикрепляем обработчик к форме:
