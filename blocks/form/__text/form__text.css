@@ -1,4 +1,4 @@
-.input__text {
+.form__text {
     padding: 0 0 13px 0;
     margin-top: 30px;
     min-width: 358px;
@@ -10,12 +10,12 @@
     color: #000;
 }
 
-.input__text:first-child {
-    margin-top: 0;
+.form__text:first-child {
+    margin: 0;
 }
 
 @media screen and (max-width: 767px) {
-    .input__text {
+    .form__text {
         min-width: 238px;
     }
 }

@@ -1,20 +1,22 @@
 const popup = document.querySelector('.popup');
+//Переменные относящиеся к попап редактирования профиля
 const popupEdit = document.querySelector('.popup-edit');
 const editButton = document.querySelector('.profile__edit-button');
 const closePopupEdit = document.querySelector('.popup__button-close_edit_form');
 const nameInput = document.querySelector('.input__text_type_name');
 const jobInput = document.querySelector('.input__text_type_job');
-const titleName = document.querySelector('.profile__info-title');
-const subtitleJob = document.querySelector('.profile__info-subtitle');
-const formEdit = document.querySelector('.edit-input');
-
+const titleName = document.querySelector('.profile__name');
+const subtitleJob = document.querySelector('.profile__job');
+const formEdit = document.querySelector('.edit-form');
+//Переменные относящиеся к попап добавления фото
 const popupAdd = document.querySelector('.popup-add');
 const addButton = document.querySelector('.profile__add-button');
 const closePopupAdd =document.querySelector('.popup__button-close_add_form');
-const formAdd = document.querySelector('.add-input');
+const formAdd = document.querySelector('.add-form');
 const namePhotoInput = document.querySelector('.input__text_photo_name');
 const linkPhotoInput = document.querySelector('.input__text_photo_link');
-
+const buttonElement = document.querySelector('.popup__button-save');
+//Переменные относящиеся к фото-карточкам 
 const photoButton = document.querySelector('.photo-grid__image');
 const popupPhoto = document.querySelector('.popup-photo');
 const popupPhotoClose = document.querySelector('.popup__button-close_photo_form');
@@ -50,14 +52,29 @@ const initialCards = [
     link: 'https://images.unsplash.com/flagged/photo-1583861353616-4dfabcc7ea9f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80'
     }
 ];
+
 //Общая функция открытия попап.
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    //Функция закрытия попап по клику мыши
+    popup.addEventListener('click', function (evt) {
+        if(!evt.target.closest('.popup__container')) {
+            closePopup(evt.target.closest('.popup'));
+        }
+    });
 }
+
 //Общая функция закрытия попап.
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
+//Общая функция закрытия попап при нажатие на клавишу "Escape"
+document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+        const popupOpened = document.querySelector('.popup_opened');
+        closePopup(popupOpened);
+    }
+})
 
 //Открыть попап редактор профиля.
 function openFormEdit(){
@@ -79,6 +96,7 @@ closePopupEdit.addEventListener('click', closeFormEdit);
 function openFormAdd(){
     namePhotoInput.value = '';
     linkPhotoInput.value = '';
+    buttonElement.classList.add('popup__button-save_inactive');
     openPopup(popupAdd);
 }
 
@@ -108,12 +126,19 @@ function formSubmitHandler(evt){
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formEdit.addEventListener('submit', formSubmitHandler);
+
 //Закрыть просмотр фото.
-function clousePhoto () {
+function clousePhoto() {
     closePopup(popupPhoto);
 }
 
 popupPhotoClose.addEventListener('click', clousePhoto);
+
+popupPhoto.addEventListener('click', function (evt) {
+    if(!evt.target.closest('.popup-photo__container')) {
+        closePopup(evt.target.closest('.popup'));
+    }
+});
 
 function renederItems () {
     initialCards.forEach(renederItem);
