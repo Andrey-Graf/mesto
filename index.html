@@ -40,9 +40,9 @@
                     <h3 class="popup__title">Редактировать профиль</h3>
                     <form class="form edit-form" name="edit" novalidate>
                         <fieldset class="form__set">
-                            <input type="text" name="name" id="profile-name" placeholder="Введите имя" class="form__text input__text_type_name" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+                            <input type="text" name="name" id="profile-name" placeholder="Введите имя" class="form__text form__text_type_name" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
                             <span class="form__input-error" id="profile-name-error"></span>
-                            <input type="text" name="job" id="profile-job" placeholder="Введите профессию" class="form__text input__text_type_job" value="Иследователь океана" minlength="2" maxlength="200" required>
+                            <input type="text" name="job" id="profile-job" placeholder="Введите профессию" class="form__text form__text_type_job" value="Иследователь океана" minlength="2" maxlength="200" required>
                             <span class="form__input-error" id="profile-job-error"></span>
                             <button type="submit" class="popup__button-save" aria-label="Сохранить">Сохранить</button>
                         </fieldset>
@@ -57,9 +57,9 @@
                     <h3 class="popup__title">Новое место</h3>
                     <form class="form add-form" name="add" novalidate>
                         <fieldset class="form__set">
-                            <input type="text" name="name" id="photo-name" placeholder="Название" class="form__text input__text_photo_name" minlength="2" maxlength="30" required>
+                            <input type="text" name="name" id="photo-name" placeholder="Название" class="form__text form__text_photo_name" minlength="2" maxlength="30" required>
                             <span class="form__input-error" id="photo-name-error"></span>
-                            <input type="url" name="link" id="photo-link" placeholder="Ссылка на картинку" class="form__text input__text_photo_link" minlength="2" required>
+                            <input type="url" name="link" id="photo-link" placeholder="Ссылка на картинку" class="form__text form__text_photo_link" minlength="2" required>
                             <span class="form__input-error" id="photo-link-error"></span>
                             <button type="submit" class="popup__button-save" aria-label="Создать">Создать</button>
                         </fieldset>
@@ -71,7 +71,7 @@
         <div class="popup popup-photo">
             <div class="popup-photo__container">
                 <figure class="popup-photo__figure">
-                    <img alt="" class="popup-photo__image">
+                    <img src="#" alt="#" class="popup-photo__image">
                     <figcaption class="popup-photo__caption"></figcaption>
                     <button type="button" class="popup__button-close popup__button-close_photo_form" aria-label="Закрыть фотографию"></button>
                 </figure>
@@ -80,7 +80,7 @@
         <template class="photo-template">
             <li class="photo-grid__element">
                 <figure class="photo-grid__figure">
-                    <img src="#" alt="" class="photo-grid__image photo-grid__image_click_open">
+                    <img src="#" alt="#" class="photo-grid__image photo-grid__image_click_open">
                     <button type="button" aria-label="Удалить" class="photo-grid__delete-button"></button>
                     <figcaption class="photo-grid__group">
                         <h2 class="photo-grid__caption"></h2>
