@@ -1,8 +1,7 @@
-const popup = document.querySelector('.popup');
 //Переменные относящиеся к попап редактирования профиля
 const popupEdit = document.querySelector('.popup-edit');
 const editButton = document.querySelector('.profile__edit-button');
-const closePopupEdit = document.querySelector('.popup__button-close_edit_form');
+const buttonClosePopupEdit = document.querySelector('.popup__button-close_edit_form');
 const nameInput = document.querySelector('.form__text_type_name');
 const jobInput = document.querySelector('.form__text_type_job');
 const titleName = document.querySelector('.profile__name');
@@ -11,70 +10,50 @@ const formEdit = document.querySelector('.edit-form');
 //Переменные относящиеся к попап добавления фото
 const popupAdd = document.querySelector('.popup-add');
 const addButton = document.querySelector('.profile__add-button');
-const closePopupAdd =document.querySelector('.popup__button-close_add_form');
+const buttonClosePopupAdd =document.querySelector('.popup__button-close_add_form');
 const formAdd = document.querySelector('.add-form');
-const namePhotoInput = document.querySelector('.form__text_photo_name');
-const linkPhotoInput = document.querySelector('.form__text_photo_link');
-const buttonElement = document.querySelector('.popup__button-save');
+const namePhotoInput = document.querySelector('input[name="name-photo"]');
+const linkPhotoInput = document.querySelector('input[name="link"]');
+const buttonSubmitFormProfile = formEdit.querySelector('.popup__button-save');
 //Переменные относящиеся к фото-карточкам 
 const photoButton = document.querySelector('.photo-grid__image');
 const popupPhoto = document.querySelector('.popup-photo');
-const popupPhotoClose = document.querySelector('.popup__button-close_photo_form');
+const buttonClosePopupPhoto = document.querySelector('.popup__button-close_photo_form');
 const photoCaption = document.querySelector('.popup-photo__caption');
 const photoImage = document.querySelector('.popup-photo__image');
 
 const photoGridElements = document.querySelector('.photo-grid__elements');
 const photoTemplate = document.querySelector('.photo-template').content;
 
-const initialCards = [
-    {
-    name: 'Бали',
-    link: 'https://images.unsplash.com/photo-1622512272112-adeced423785?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
-    },
-    {
-    name: 'Калининград, порт',
-    link: 'https://images.unsplash.com/photo-1518291825369-f4bbd68a350a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'
-    },
-    {
-    name: 'Дом советов',
-    link: 'https://images.unsplash.com/photo-1570980283252-4fffeb60229a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
-    },
-    {
-    name: 'Кафедральный собор',
-    link: 'https://images.unsplash.com/photo-1548270095-a5b17516d66a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-    },
-    {
-    name: 'Великий Новгород',
-    link: 'https://images.unsplash.com/photo-1600253613497-8a39b8b4a5de?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80'
-    },
-    {
-    name: 'Санкт-Петербург',
-    link: 'https://images.unsplash.com/flagged/photo-1583861353616-4dfabcc7ea9f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80'
+//Общая функция закрытия попап при нажатие на клавишу "Escape"
+function closeEscPopup(evt) {
+    if (evt.key === 'Escape') {
+        const popup = document.querySelector('.popup_opened');
+        closePopup(popup);
     }
-];
+}
 
 //Общая функция открытия попап.
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    //Функция закрытия попап по клику мыши
-    popup.addEventListener('click', function (evt) {
-        if(!evt.target.closest('.popup__container')) {
-            closePopup(evt.target.closest('.popup'));
-        }
-    });
+    document.addEventListener('keydown', closeEscPopup);
 }
+
+//Функция закрытия попап по клику мыши
+function closeClickPopup(evt) {
+    if(!evt.target.closest('.popup__container')) {
+        closePopup(evt.target.closest('.popup'));
+    }
+}
+
+popupEdit.addEventListener('click', closeClickPopup);
+popupAdd.addEventListener('click', closeClickPopup);
 
 //Общая функция закрытия попап.
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeEscPopup);
 }
-//Общая функция закрытия попап при нажатие на клавишу "Escape"
-document.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape') {
-        const popupOpened = document.querySelector('.popup_opened');
-        closePopup(popupOpened);
-    }
-})
 
 //Открыть попап редактор профиля.
 function openFormEdit(){
@@ -90,28 +69,31 @@ function closeFormEdit(){
     closePopup(popupEdit);
 }
 
-closePopupEdit.addEventListener('click', closeFormEdit);
+buttonClosePopupEdit.addEventListener('click', closeFormEdit);
 
 //Открыть попап добавления фото.
-function openFormAdd(){
+function openFormAdd() {
+    openPopup(popupAdd);
+    formAdd.reset();
+    const input = Array.from(formAdd.querySelectorAll('input'));
+    const button = formAdd.querySelector('button');
+    toggleButtonState(input, button, configValidation);
     namePhotoInput.value = '';
     linkPhotoInput.value = '';
-    buttonElement.classList.add('popup__button-save_inactive');
-    openPopup(popupAdd);
 }
 
 addButton.addEventListener('click', openFormAdd);
 
 //Закрыть попап добавления фото.
-function closeFormAdd(){
+function closeFormAdd() {
     closePopup(popupAdd);
 }
 
-closePopupAdd.addEventListener('click', closeFormAdd);
+buttonClosePopupAdd.addEventListener('click', closeFormAdd);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler(evt){
+function submitFormProfile(evt){
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
@@ -125,52 +107,57 @@ function formSubmitHandler(evt){
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formEdit.addEventListener('submit', formSubmitHandler);
+formEdit.addEventListener('submit', submitFormProfile);
 
 //Закрыть просмотр фото.
 function clousePhoto() {
     closePopup(popupPhoto);
 }
 
-popupPhotoClose.addEventListener('click', clousePhoto);
-
+buttonClosePopupPhoto.addEventListener('click', clousePhoto);
+// Закрытие фото попап по клику на оверлей.
 popupPhoto.addEventListener('click', function (evt) {
     if(!evt.target.closest('.popup-photo__container')) {
         closePopup(evt.target.closest('.popup'));
     }
 });
 
-function renederItems () {
-    initialCards.forEach(renederItem);
-}
-renederItems();
-//Добавление 6 карточек из масива.
-function renederItem(el) {
+function createCard(link, title) {
     const initialCardsElement = photoTemplate.cloneNode(true);
-    initialCardsElement.querySelector('.photo-grid__caption').textContent = el.name;
-    initialCardsElement.querySelector('.photo-grid__image').src = el.link;
-    initialCardsElement.querySelector('.photo-grid__image').alt = el.name;
-    initialCardsElement.querySelector('.photo-grid__like-button').addEventListener('click', function (evt){
-        const eventTarget = evt.target.classList.toggle('photo-grid__like-button_activ');
+    initialCardsElement.querySelector('.photo-grid__caption').innerText = title;
+    initialCardsElement.querySelector('.photo-grid__image').src = link;
+    initialCardsElement.querySelector('.photo-grid__image').alt = title;
+    initialCardsElement.querySelector('.photo-grid__image_click_open').addEventListener('click', function(evt){
+        openPopup(popupPhoto);
+        photoCaption.textContent = evt.target.closest('.photo-grid__element').querySelector('.photo-grid__caption').textContent;
+        photoImage.src = evt.target.closest('.photo-grid__image').src;
     });
     initialCardsElement.querySelector('.photo-grid__delete-button').addEventListener('click', function (evt) {
         evt.target.closest('.photo-grid__element').remove();
     });
-    initialCardsElement.querySelector('.photo-grid__image_click_open').addEventListener('click', function(evt){
-        popupPhoto.classList.add('popup_opened');
-        photoCaption.textContent = evt.target.closest('.photo-grid__element').querySelector('.photo-grid__caption').textContent;
-        photoImage.src = evt.target.closest('.photo-grid__image').src;
+    initialCardsElement.querySelector('.photo-grid__like-button').addEventListener('click', function (evt){
+        const eventTarget = evt.target.classList.toggle('photo-grid__like-button_activ');
     });
-    photoGridElements.prepend(initialCardsElement);
-    
-}
-
-//Функция добавление новых карт.
-function createNewCards(evt) {
-    evt.preventDefault();
-    const addNewCard = renederItem({name: namePhotoInput.value, link: linkPhotoInput.value});
     closeFormAdd();
-    return addNewCard;
+    return initialCardsElement;
 }
 
-formAdd.addEventListener('submit', createNewCards);
+
+function addElement(container, element) {
+    container.prepend(element);
+}
+
+function createNewCard(evt) {
+    evt.preventDefault();
+    addElement(photoGridElements, createCard(linkPhotoInput.value, namePhotoInput.value));
+    closeFormAdd();
+    return addElement;
+}
+
+formAdd.addEventListener('submit', createNewCard);
+
+function renderElements() {
+    initialCards.forEach((el) => addElement(photoGridElements, createCard(el.link, el.title)));
+}
+
+renderElements();
