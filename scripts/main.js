@@ -78,8 +78,6 @@ function openFormAdd() {
     const input = Array.from(formAdd.querySelectorAll('input'));
     const button = formAdd.querySelector('button');
     toggleButtonState(input, button, configValidation);
-    namePhotoInput.value = '';
-    linkPhotoInput.value = '';
 }
 
 addButton.addEventListener('click', openFormAdd);
@@ -128,9 +126,9 @@ function createCard(link, title) {
     initialCardsElement.querySelector('.photo-grid__image').src = link;
     initialCardsElement.querySelector('.photo-grid__image').alt = title;
     initialCardsElement.querySelector('.photo-grid__image_click_open').addEventListener('click', function(evt){
+        photoCaption.textContent = title;
+        photoImage.src = link;
         openPopup(popupPhoto);
-        photoCaption.textContent = evt.target.closest('.photo-grid__element').querySelector('.photo-grid__caption').textContent;
-        photoImage.src = evt.target.closest('.photo-grid__image').src;
     });
     initialCardsElement.querySelector('.photo-grid__delete-button').addEventListener('click', function (evt) {
         evt.target.closest('.photo-grid__element').remove();
