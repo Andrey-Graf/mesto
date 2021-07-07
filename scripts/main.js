@@ -1,3 +1,7 @@
+import { FormValidator, configValidation } from './validate.js';
+import { inCards } from './initial-cards.js';
+import Card from './Card.js';
+
 //Переменные относящиеся к попап редактирования профиля
 const popupEdit = document.querySelector('.popup-edit');
 const editButton = document.querySelector('.profile__edit-button');
@@ -54,6 +58,9 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeEscPopup);
 }
+//Проверка валидации формы редактора профиля
+const validateEditForm = new FormValidator(configValidation, formEdit);
+validateEditForm.enableValidation();
 
 //Открыть попап редактор профиля.
 function openFormEdit(){
@@ -75,12 +82,17 @@ buttonClosePopupEdit.addEventListener('click', closeFormEdit);
 function openFormAdd() {
     openPopup(popupAdd);
     formAdd.reset();
-    const input = Array.from(formAdd.querySelectorAll('input'));
-    const button = formAdd.querySelector('button');
-    toggleButtonState(input, button, configValidation);
+    // const input = Array.from(formAdd.querySelectorAll('input'));
+    // const button = formAdd.querySelector('button');
+    // toggleButtonState(input, button, configValidation);
+    validateAddForm.toggleButtonState();
 }
 
 addButton.addEventListener('click', openFormAdd);
+
+//проверка валидации формы добавления фотографии
+const validateAddForm = new FormValidator(configValidation, formAdd);
+validateAddForm.enableValidation();
 
 //Закрыть попап добавления фото.
 function closeFormAdd() {
@@ -120,42 +132,24 @@ popupPhoto.addEventListener('click', function (evt) {
     }
 });
 
-function createCard(link, title) {
-    const initialCardsElement = photoTemplate.cloneNode(true);
-    initialCardsElement.querySelector('.photo-grid__caption').innerText = title;
-    initialCardsElement.querySelector('.photo-grid__image').src = link;
-    initialCardsElement.querySelector('.photo-grid__image').alt = title;
-    initialCardsElement.querySelector('.photo-grid__image_click_open').addEventListener('click', function(evt){
-        photoCaption.textContent = title;
-        photoImage.src = link;
-        openPopup(popupPhoto);
-    });
-    initialCardsElement.querySelector('.photo-grid__delete-button').addEventListener('click', function (evt) {
-        evt.target.closest('.photo-grid__element').remove();
-    });
-    initialCardsElement.querySelector('.photo-grid__like-button').addEventListener('click', function (evt){
-        const eventTarget = evt.target.classList.toggle('photo-grid__like-button_activ');
-    });
-    closeFormAdd();
-    return initialCardsElement;
+//Создать 6 карточек
+inCards.forEach((el) => {
+    const card =  new Card (el, '.photo-template', openPopup, popupPhoto, photoImage, photoCaption);
+    const cardElement = card.generateCard();
+    photoGridElements.prepend(cardElement);
+});
+
+//Создать новую карточку
+function createNewCard() {
+    const card =  new Card ({title: namePhotoInput.value, link: linkPhotoInput.value}, '.photo-template', openPopup, popupPhoto, photoImage, photoCaption);
+    const cardElement = card.generateCard();
+    return cardElement;
 }
-
-
-function addElement(container, element) {
-    container.prepend(element);
-}
-
-function createNewCard(evt) {
+//Добавить новую карточку в начало списка
+function addElement(evt) {
     evt.preventDefault();
-    addElement(photoGridElements, createCard(linkPhotoInput.value, namePhotoInput.value));
+    photoGridElements.prepend(createNewCard());
     closeFormAdd();
-    return addElement;
 }
 
-formAdd.addEventListener('submit', createNewCard);
-
-function renderElements() {
-    initialCards.forEach((el) => addElement(photoGridElements, createCard(el.link, el.title)));
-}
-
-renderElements();
+formAdd.addEventListener('submit', addElement);
