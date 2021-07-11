@@ -1,7 +1,6 @@
-import { FormValidator, configValidation } from './validate.js';
+import { FormValidator, configValidation } from './FormValidator.js';
 import { inCards } from './initial-cards.js';
 import Card from './Card.js';
-
 //Переменные относящиеся к попап редактирования профиля
 const popupEdit = document.querySelector('.popup-edit');
 const editButton = document.querySelector('.profile__edit-button');
@@ -14,7 +13,7 @@ const formEdit = document.querySelector('.edit-form');
 //Переменные относящиеся к попап добавления фото
 const popupAdd = document.querySelector('.popup-add');
 const addButton = document.querySelector('.profile__add-button');
-const buttonClosePopupAdd =document.querySelector('.popup__button-close_add_form');
+const buttonClosePopupAdd = document.querySelector('.popup__button-close_add_form');
 const formAdd = document.querySelector('.add-form');
 const namePhotoInput = document.querySelector('input[name="name-photo"]');
 const linkPhotoInput = document.querySelector('input[name="link"]');
@@ -45,7 +44,7 @@ function openPopup(popup) {
 
 //Функция закрытия попап по клику мыши
 function closeClickPopup(evt) {
-    if(!evt.target.closest('.popup__container')) {
+    if (!evt.target.closest('.popup__container')) {
         closePopup(evt.target.closest('.popup'));
     }
 }
@@ -63,7 +62,7 @@ const validateEditForm = new FormValidator(configValidation, formEdit);
 validateEditForm.enableValidation();
 
 //Открыть попап редактор профиля.
-function openFormEdit(){
+function openFormEdit() {
     nameInput.value = titleName.textContent;
     jobInput.value = subtitleJob.textContent;
     openPopup(popupEdit);
@@ -72,7 +71,7 @@ function openFormEdit(){
 editButton.addEventListener('click', openFormEdit);
 
 //Закрыть попап редактора профиля.
-function closeFormEdit(){
+function closeFormEdit() {
     closePopup(popupEdit);
 }
 
@@ -82,9 +81,6 @@ buttonClosePopupEdit.addEventListener('click', closeFormEdit);
 function openFormAdd() {
     openPopup(popupAdd);
     formAdd.reset();
-    // const input = Array.from(formAdd.querySelectorAll('input'));
-    // const button = formAdd.querySelector('button');
-    // toggleButtonState(input, button, configValidation);
     validateAddForm.toggleButtonState();
 }
 
@@ -103,10 +99,10 @@ buttonClosePopupAdd.addEventListener('click', closeFormAdd);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function submitFormProfile(evt){
+function submitFormProfile(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
+    // Так мы можем определить свою логику отправки.
+    // О том, как это делать, расскажем позже.
     // Получите значение полей jobInput и nameInput из свойства value
     // Выберите элементы, куда должны быть вставлены значения полей
     titleName.textContent = nameInput.value;
@@ -126,22 +122,22 @@ function clousePhoto() {
 
 buttonClosePopupPhoto.addEventListener('click', clousePhoto);
 // Закрытие фото попап по клику на оверлей.
-popupPhoto.addEventListener('click', function (evt) {
-    if(!evt.target.closest('.popup-photo__container')) {
+popupPhoto.addEventListener('click', function(evt) {
+    if (!evt.target.closest('.popup-photo__container')) {
         closePopup(evt.target.closest('.popup'));
     }
 });
 
 //Создать 6 карточек
-inCards.forEach((el) => {
-    const card =  new Card (el, '.photo-template', openPopup, popupPhoto, photoImage, photoCaption);
+inCards.forEach((data) => {
+    const card = new Card(data, '.photo-template');
     const cardElement = card.generateCard();
     photoGridElements.prepend(cardElement);
 });
 
 //Создать новую карточку
-function createNewCard() {
-    const card =  new Card ({title: namePhotoInput.value, link: linkPhotoInput.value}, '.photo-template', openPopup, popupPhoto, photoImage, photoCaption);
+function createNewCard(data) {
+    const card = new Card({ title: namePhotoInput.value, link: linkPhotoInput.value }, '.photo-template', data);
     const cardElement = card.generateCard();
     return cardElement;
 }

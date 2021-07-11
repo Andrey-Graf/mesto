@@ -14,5 +14,5 @@
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
-    cursor: pointer;
+    cursor: pointer; /*это не состояние навидения?*/
 }
