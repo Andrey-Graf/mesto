@@ -1,6 +1,6 @@
 const initialCards = [{
         title: 'Бали',
-        link: 'https://images.unsplash.com/photo-1622512272112-adeced423785?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+        link: 'https://images.unsplash.com/photo-1591687814551-c41d42ec2ac6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80'
     },
     {
         title: 'Калининград, порт',
