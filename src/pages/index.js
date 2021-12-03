@@ -12,6 +12,14 @@ import { editButton, nameInput, jobInput, titleName, subtitleJob, formEdit, addB
 const popupWithImage = new PopupWithImage('.popup-photo');
 popupWithImage.setEventListeners();
 
+const createCard = {
+    create(data) {
+        const card = createNewCard(data.link, data.title);
+        const cardElement = card.generateCard();
+        cardsList.addItem(cardElement);
+    }
+}
+
 const createNewCard = (link, title) => {
     const card = new Card('.photo-template', {
         link: link,
@@ -24,33 +32,31 @@ const createNewCard = (link, title) => {
 }
 
 // Отрисовка элементов на странице.
-const cardsTemplate = new Section({
+const cardsList = new Section({
     items: inCards,
     renderer: (data) => {
-        const card = createNewCard(data.link, data.title);
-        const cardElement = card.generateCard();
-        cardsTemplate.addItem(cardElement);
+        createCard.create(data);
     }
 }, '.photo-grid__elements');
 
-cardsTemplate.rendererCards();
-//проверка валидации формы добавления фотографии
-const validateAddForm = new FormValidator(configValidation, formAdd);
-validateAddForm.enableValidation();
+cardsList.rendererCards();
 
 // Попап создать новую карточку.
 const popupWithAddForm = new PopupWithForm('.popup-add', {
     validate: validateAddForm,
     handleSubmit: (data) => {
-        const card = createNewCard(data.link, data.title);
-        const cardElement = card.generateCard();
-        cardsTemplate.addItem(cardElement);
+        createCard.create(data);
     }
 });
 
 addButton.addEventListener('click', () => {
+    validateAddForm.toggleButtonState();
     popupWithAddForm.open();
 });
+
+//проверка валидации формы добавления фотографии
+const validateAddForm = new FormValidator(configValidation, formAdd);
+validateAddForm.enableValidation();
 
 // Попап профиль.
 const userInfo = new UserInfo({
@@ -70,11 +76,11 @@ const popupUserInfo = new PopupWithForm('.popup-edit', {
     }
 });
 
-const popupEditProfile = () => {
+const editPopupProfile = () => {
     const userData = userInfo.getUserInfo();
     nameInput.value = userData.name;
     jobInput.value = userData.job;
     popupUserInfo.open();
 }
 
-editButton.addEventListener('click', popupEditProfile);
+editButton.addEventListener('click', editPopupProfile);
