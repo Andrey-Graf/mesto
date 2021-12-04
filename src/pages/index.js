@@ -10,14 +10,11 @@ import { editButton, nameInput, jobInput, titleName, subtitleJob, formEdit, addB
 
 // Открыть попап с фотографией.
 const popupWithImage = new PopupWithImage('.popup-photo');
-popupWithImage.setEventListeners();
 
-const createCard = {
-    create(data) {
-        const card = createNewCard(data.link, data.title);
-        const cardElement = card.generateCard();
-        cardsList.addItem(cardElement);
-    }
+const renderCard = (data) => {
+    const card = createNewCard(data.link, data.title);
+    const cardElement = card.generateCard();
+    cardsList.addItem(cardElement);
 }
 
 const createNewCard = (link, title) => {
@@ -35,7 +32,7 @@ const createNewCard = (link, title) => {
 const cardsList = new Section({
     items: inCards,
     renderer: (data) => {
-        createCard.create(data);
+        renderCard(data);
     }
 }, '.photo-grid__elements');
 
@@ -45,7 +42,7 @@ cardsList.rendererCards();
 const popupWithAddForm = new PopupWithForm('.popup-add', {
     validate: validateAddForm,
     handleSubmit: (data) => {
-        createCard.create(data);
+        renderCard(data);
     }
 });
 
