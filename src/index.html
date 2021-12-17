@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
     <title>Место</title>
 </head>
 
@@ -17,6 +16,7 @@
             <section class="profile">
                 <div class="profile__container-info">
                     <img src="<%=require('./images/profile-image.svg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
+                    <button class="profile__avatar-edit-btn" aria-label="Редактировать фотографию профиля"></button>
                     <div class="profile__edit">
                         <div class="profile__info">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -44,7 +44,7 @@
                         <fieldset class="form__set">
                             <input type="text" name="name" id="profile-name" placeholder="Введите имя" class="form__text form__text_type_name" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
                             <span class="form__input-error" id="profile-name-error"></span>
-                            <input type="text" name="job" id="profile-job" placeholder="Введите профессию" class="form__text form__text_type_job" value="Иследователь океана" minlength="2" maxlength="200" required>
+                            <input type="text" name="about" id="profile-job" placeholder="Введите профессию" class="form__text form__text_type_job" value="Иследователь океана" minlength="2" maxlength="200" required>
                             <span class="form__input-error" id="profile-job-error"></span>
                             <button type="submit" class="popup__button-save" aria-label="Сохранить">Сохранить</button>
                         </fieldset>
@@ -59,7 +59,7 @@
                     <h3 class="popup__title">Новое место</h3>
                     <form class="form add-form" name="add" novalidate>
                         <fieldset class="form__set">
-                            <input type="text" name="title" id="photo-name" placeholder="Название" class="form__text" minlength="2" maxlength="30" required>
+                            <input type="text" name="name" id="photo-name" placeholder="Название" class="form__text" minlength="2" maxlength="30" required>
                             <span class="form__input-error" id="photo-name-error"></span>
                             <input type="url" name="link" id="photo-link" placeholder="Ссылка на картинку" class="form__text" minlength="2" required>
                             <span class="form__input-error" id="photo-link-error"></span>
@@ -79,6 +79,34 @@
                 </figure>
             </div>
         </div>
+        <div class="popup popup-confirm">
+            <div class="popup__container">
+                <div class="popup__confirm">
+                    <h3 class="popup__title">Вы уверены?</h3>
+                    <form class="form confirm-form" name="confirm" novalidate>
+                        <fieldset class="form__set">
+                            <button type="reset" class="popup__button-save">Да</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <button type="button" class="popup__button-close popup__button-close_add_form" aria-label="Закрыть попап"></button>
+            </div>
+        </div>
+        <div class="popup popup-avatar">
+            <div class="popup__container">
+                <div class="popup__update-avatar">
+                    <h3 class="popup__title">Обновить аватар</h3>
+                    <form class="form avatar-form" name="aavatar" novalidate>
+                        <fieldset class="form__set">
+                            <input type="url" name="avatar" id="avatar-link" placeholder="Ссылка на картинку" class="form__text" minlength="2" required>
+                            <span class="form__input-error" id="avatar-link-error"></span>
+                            <button type="submit" class="popup__button-save" aria-label="Создать">Создать</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <button type="button" class="popup__button-close popup__button-close_add_form" aria-label="Закрыть попап"></button>
+            </div>
+        </div>
         <template class="photo-template">
             <li class="photo-grid__element">
                 <figure class="photo-grid__figure">
@@ -86,12 +114,14 @@
                     <button type="button" aria-label="Удалить" class="photo-grid__delete-button"></button>
                     <figcaption class="photo-grid__group">
                         <h2 class="photo-grid__caption"></h2>
-                        <button type="button" class="photo-grid__like-button"></button>
+                        <div class="photo-grid__like-group">
+                            <button type="button" class="photo-grid__like-button"></button>
+                            <span class="photo-grid__like-count">0</span>
+                        </div>
                     </figcaption>
                 </figure>
             </li>
         </template>
-        <!-- <script type="module" src="./pages/index.js"></script> -->
     </div>
 </body>
 

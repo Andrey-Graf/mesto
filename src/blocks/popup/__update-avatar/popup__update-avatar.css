@@ -1,0 +1,9 @@
+.popup__update-avatar {
+    padding: 34px 36px 37px 36px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__update-avatar {
+        padding: 25px 22px 25px 22px;
+    }
+}
