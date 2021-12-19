@@ -25,6 +25,11 @@ export default class PopupWithConfirmation extends Popup {
         super._removeEventListeners();
     }
 
+    open(data) {
+        this._data = data;
+        super.open();
+    }
+
     close() {
         this._removeEventListeners();
         this._form.reset();

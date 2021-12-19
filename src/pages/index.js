@@ -6,22 +6,13 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
-import { editButton, nameInput, jobInput, titleName, subtitleJob, userAvatar, formEdit, addButton, formAdd, formAvatar, popupConfirm, editButtonAvatar, photoSelector } from '../utils/constants.js'
+import { editButton, nameInput, jobInput, titleName, subtitleJob, userAvatar, formEdit, addButton, formAdd, formAvatar, popupConfirm, editButtonAvatar, photoSelector, photoElementTemplete } from '../utils/constants.js'
 import Api from '../components/Api.js';
-
-const photoElementTemplete = '.photo-template';
 
 let elemCard = null;
 let userId = null;
 // Открыть попап с фотографией.
 const popupWithImage = new PopupWithImage('.popup-photo');
-
-// Профиль.
-const userInfo = new UserInfo({
-    userNameSelector: titleName,
-    userJobSelector: subtitleJob,
-    userAvatarSelector: userAvatar
-});
 
 const renderCard = (data) => {
     const card = createNewCard(data);
@@ -125,7 +116,6 @@ const popupWithAddForm = new PopupWithForm('.popup-add', {
             })
             .finally(() => {
                 popupWithAddForm.renderLoading(false);
-                popupWithAddForm.close();
             })
     }
 });
@@ -138,6 +128,22 @@ addButton.addEventListener('click', () => {
 //проверка валидации формы добавления фотографии.
 const validateAddForm = new FormValidator(configValidation, formAdd);
 validateAddForm.enableValidation();
+
+// Профиль.
+const userInfo = new UserInfo({
+    userNameSelector: titleName,
+    userJobSelector: subtitleJob,
+    userAvatarSelector: userAvatar
+});
+
+const editPopupProfile = () => {
+    const userData = userInfo.getUserInfo();
+    nameInput.value = userData.name;
+    jobInput.value = userData.about;
+    popupUserInfo.open();
+}
+
+editButton.addEventListener('click', editPopupProfile);
 
 //Проверка валидации формы редактора профиля.
 const validateEditForm = new FormValidator(configValidation, formEdit);
@@ -156,19 +162,9 @@ const popupUserInfo = new PopupWithForm('.popup-edit', {
             })
             .finally(() => {
                 popupUserInfo.renderLoading(false);
-                popupUserInfo.close();
             })
     }
 });
-
-const editPopupProfile = () => {
-    const userData = userInfo.getUserInfo();
-    nameInput.value = userData.name;
-    jobInput.value = userData.about;
-    popupUserInfo.open();
-}
-
-editButton.addEventListener('click', editPopupProfile);
 
 //Попап редактора аватарки.
 const popupUserEditAvatar = new PopupWithForm('.popup-avatar', {

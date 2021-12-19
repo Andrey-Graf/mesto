@@ -11,6 +11,7 @@ const titleName = '.profile__name';
 const subtitleJob = '.profile__job';
 const userAvatar = '.profile__avatar';
 const popupConfirm = '.popup-confirm';
+const photoElementTemplete = '.photo-template';
 
 const photoSelector = {
     photoImageSelector: '.photo-grid__image',
@@ -20,4 +21,4 @@ const photoSelector = {
     photoDelete: '.photo-grid__delete-button'
 }
 
-export { editButton, nameInput, jobInput, titleName, subtitleJob, userAvatar, formEdit, addButton, formAdd, formAvatar, popupConfirm, editButtonAvatar, photoSelector };
+export { editButton, nameInput, jobInput, titleName, subtitleJob, userAvatar, formEdit, addButton, formAdd, formAvatar, popupConfirm, editButtonAvatar, photoSelector, photoElementTemplete };

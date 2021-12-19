@@ -6,10 +6,11 @@ export default class PopupWithForm extends Popup {
         this._form = this._popupElement.querySelector('.form');
         this._handleSubmit = handleSubmit;
         this._handleSubmitButton = document.querySelector('.popup__button-save');
+        this._initialSubmitButton = this._handleSubmitButton.textContent;
         this._submitPreventDefault = this._submitPreventDefault.bind(this);
     }
 
-    renderLoading(isLoading, initialDownloadMessage = 'Cохранение..') {
+    renderLoading(isLoading, initialDownloadMessage = 'Cохранение...') {
         if (isLoading) {
             this._handleSubmitButton.textContent = initialDownloadMessage;
         } else {

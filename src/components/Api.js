@@ -60,7 +60,7 @@ export default class Api {
 
     setUserInfo(data) {
         return fetch(`${this._url}/users/me`, {
-            method: 'PATHC',
+            method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
@@ -71,11 +71,12 @@ export default class Api {
 
     setUserAvatar(data) {
         return fetch(`${this._url}/users/me/avatar`, {
-            method: 'PATHC',
+            method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 avatar: data.avatar
             })
         }).then(this._handleResponse);
     }
+
 }

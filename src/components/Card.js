@@ -76,9 +76,7 @@ export default class Card {
                 this._like(this._data);
             }
         });
-        this._deleteButtonClick.addEventListener('click', () => {
-            this._handleDeletecard(this._data)
-        });
+        this._deleteButtonClick.addEventListener('click', this._handleDeletecard);
     }
 
     generateCard() {
