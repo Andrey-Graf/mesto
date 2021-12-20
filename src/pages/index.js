@@ -1,5 +1,6 @@
 import '../pages/index.css';
-import { FormValidator, configValidation } from '../components/FormValidator.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { configValidation } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -36,19 +37,10 @@ const api = new Api({
     }
 });
 
-api.getUserInfo()
-    .then((data) => {
-        const userData = data;
+api.getInitial()
+    .then(([userData, cardData]) => {
         userId = userData._id;
         userInfo.setUserInfo(userData);
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-
-api.getCard()
-    .then((data) => {
-        const cardData = data;
         cardsList.rendererCards(cardData);
     })
     .catch((err) => {
@@ -110,6 +102,7 @@ const popupWithAddForm = new PopupWithForm('.popup-add', {
         api.postCard(data)
             .then((res) => {
                 renderCard(res);
+                popupWithAddForm.close();
             })
             .catch((err) => {
                 console.log(err);
@@ -121,7 +114,7 @@ const popupWithAddForm = new PopupWithForm('.popup-add', {
 });
 
 addButton.addEventListener('click', () => {
-    validateAddForm.toggleButtonState();
+    validateAddForm.resetValidation();
     popupWithAddForm.open();
 });
 
@@ -156,6 +149,7 @@ const popupUserInfo = new PopupWithForm('.popup-edit', {
         api.setUserInfo(data)
             .then((res) => {
                 userInfo.setUserInfo(res);
+                popupUserInfo.close();
             })
             .catch((err) => {
                 console.log(err);
@@ -173,19 +167,19 @@ const popupUserEditAvatar = new PopupWithForm('.popup-avatar', {
         api.setUserAvatar(data)
             .then((res) => {
                 userInfo.setUserAvatar(res);
+                popupUserEditAvatar.close();
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
                 popupUserEditAvatar.renderLoading(false);
-                popupUserEditAvatar.close();
             })
     }
 });
 
 editButtonAvatar.addEventListener('click', () => {
-    validateEditAvatarForm.toggleButtonState();
+    validateEditAvatarForm.resetValidation();
     popupUserEditAvatar.open();
 });
 

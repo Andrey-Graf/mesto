@@ -21,4 +21,15 @@ const photoSelector = {
     photoDelete: '.photo-grid__delete-button'
 }
 
+const configValidation = {
+    formSelector: '.form',
+    inputSelector: '.form__text',
+    submitButtonSelector: '.popup__button-save',
+    inactiveButtonClass: 'popup__button-save_inactive',
+    inputErrorClass: 'form__text_type_error',
+    errorClass: 'form__input-error_active',
+}
+
 export { editButton, nameInput, jobInput, titleName, subtitleJob, userAvatar, formEdit, addButton, formAdd, formAvatar, popupConfirm, editButtonAvatar, photoSelector, photoElementTemplete };
+
+export { configValidation };

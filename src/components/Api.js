@@ -79,4 +79,7 @@ export default class Api {
         }).then(this._handleResponse);
     }
 
+    getInitial() {
+        return Promise.all([this.getUserInfo(), this.getCard()]);
+    }
 }

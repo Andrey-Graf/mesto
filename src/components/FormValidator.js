@@ -1,13 +1,6 @@
 // Валидация форм
 
-const configValidation = {
-    formSelector: '.form',
-    inputSelector: '.form__text',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_inactive',
-    inputErrorClass: 'form__text_type_error',
-    errorClass: 'form__input-error_active',
-}
+import { configValidation } from '../utils/constants.js'
 
 class FormValidator {
     constructor(data, form) {
@@ -43,6 +36,14 @@ class FormValidator {
             this._buttonElement.removeAttribute('disabled');
         }
     };
+
+    resetValidation() {
+        this.toggleButtonState(); //<= = управляем кнопкой ==
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement) //<= = очищаем ошибки ===
+        })
+
+    }
 
     _showInputError = (inputElement, errorMessage) => {
         const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
@@ -87,4 +88,4 @@ class FormValidator {
     };
 }
 
-export { FormValidator, configValidation };
+export { FormValidator };
