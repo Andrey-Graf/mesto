@@ -22,6 +22,7 @@
 * JavaScript.
 * CSS.
 * Webpack.
+* API
 ---
 **Figma**
 

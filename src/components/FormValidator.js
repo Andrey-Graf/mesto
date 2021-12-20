@@ -1,7 +1,5 @@
 // Валидация форм
 
-import { configValidation } from '../utils/constants.js'
-
 class FormValidator {
     constructor(data, form) {
             this._form = form;
